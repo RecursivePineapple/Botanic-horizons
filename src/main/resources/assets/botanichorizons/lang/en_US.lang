@@ -38,6 +38,8 @@ tc.research_name.BH_LAPUTA=Shards of Laputa
 tc.research_text.BH_LAPUTA=Winning the game
 tc.research_name.BH_VIRUS=Dermological overgrowth
 tc.research_text.BH_VIRUS=This happens when you smoke weed
+tc.research_name.BH_FLOWERTRANSMUTATION=Floral Transmutation
+tc.research_text.BH_FLOWERTRANSMUTATION=Adding some colour to your life
 
 botanichorizons.BH_FLOWERS.body=Old documents speak of magical flowers, but these seem to be extinct in the wild. You did notice that the mushrooms you've seen in deep caves share a lot of the properties with these purported flowers. With the invention of alchemy you think you can recreate these flowers by steeping the spores of a mushroom in the essence of surface plants.
 botanichorizons.BH_FLOWERDUPE.body=These flowers have proven very hard to grow in the wild, and don't take well to being broken. Fortunately your ventures into thaumaturgy have resulted in a new botanical recipe. Now you can split off a branch, dip it in this concoction, and it will create roots once more.
@@ -60,3 +62,5 @@ botanichorizons.BH_TERRASTEEL_AXE.body=Your latest magimetallurgic invention has
 botanichorizons.BH_LAPUTA.body_0=Sometimes you have to show off. You found a way to infuse a patch of land and make it float in the sky. It seems to be pretty difficult though. The shard of laputa works as a temporary vessel to house the energies required, before it's pushed into the ground.
 botanichorizons.BH_LAPUTA.body_1=Since the amount of energy needed increases per area of land you want to float, you have quickly realised that you need better and better materials to do the job. The return on investment also doesn't appear to be that good.
 botanichorizons.BH_VIRUS.body=You've ventured into an odd corner of carnivorous plants and created something nastier. At least animal test subjects seem not to be a moral issue for you.
+botanichorizons.BH_FLOWERTRANSMUTATION.body_0=You've gotten tired of searching behind every bush for likely extinct flower species. After all, you're a thaumaturist; surely you should be able to do something as trivial as creating flowers, right?<BR>Well, you turned out to be wrong. The flowers needed for the Petal Apothecary are too delicate to be cultivated without extremely specific environments. Thankfully, it seems that your infusion matrix can emulate these environments with enough help. A healthy dose of Permutatio and Herba along with a few other ingredients can convert certain mystical flowers into their rarer counterparts.
+botanichorizons.BH_FLOWERTRANSMUTATION.body_1=Creating the strict environments needed for floral transmutation requires that the flowers are bathed in large amounts of essentia for prolonged periods of time. If my infusion matrix is too unstable, it may be wise to gather extra ingredients before starting.

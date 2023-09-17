@@ -38,6 +38,9 @@ public class ForgeMod {
     public void postInit(FMLPostInitializationEvent event) {
         ThaumcraftAspects.registerAspects();
         ThaumcraftPatches.applyPatches();
+        if (Loader.isModLoaded("BiomesOPlenty")) {
+            ThaumcraftPatches.applyBoPPatches();
+        }
         if (Loader.isModLoaded("chisel")) {
             ChiselPatches.applyPatches();
         }

@@ -2,14 +2,12 @@ package net.fuzzycraft.botanichorizons.patches;
 
 import net.fuzzycraft.botanichorizons.mod.ForgeMod;
 import net.fuzzycraft.botanichorizons.util.Constants;
+import net.fuzzycraft.botanichorizons.util.ItemSpec;
 import net.fuzzycraft.botanichorizons.util.OreDict;
 import net.fuzzycraft.botanichorizons.util.ResearchBuilder;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockSkull;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
@@ -17,12 +15,8 @@ import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.research.ResearchCategories;
-import thaumcraft.api.research.ResearchItem;
-import thaumcraft.api.research.ResearchPage;
-import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.common.block.ModBlocks;
 import vazkii.botania.common.block.ModFluffBlocks;
-import vazkii.botania.common.crafting.ModCraftingRecipes;
 import vazkii.botania.common.item.ModItems;
 import vazkii.botania.common.lib.LibOreDict;
 
@@ -517,5 +511,115 @@ public class ThaumcraftPatches {
         ThaumcraftApi.addWarpToItem(new ItemStack(ModItems.virus, 1, Constants.VIRUS_METADATA_NECRO), 1);
         ThaumcraftApi.addWarpToItem(new ItemStack(ModItems.virus, 1, Constants.VIRUS_METADATA_NULL), 1);
 
+    }
+
+    public static void applyBoPPatches() {
+        // HV method of creating biomes o plenty flowers
+        new ResearchBuilder("FLOWERTRANSMUTATION")
+            .setBookLocation(6,3)
+            .setResearchIconBlock("botania", "marimorphosis.png")
+            .setResearchAspects(Aspect.PLANT, Aspect.EXCHANGE, Aspect.MAGIC, Aspect.CRAFT)
+            .setDifficulty(3)
+            .setDependencies("FLOWERCOLOUR")
+            .setExternalDependencies("INFUSION")
+            .addTextPages(0, 2)
+            .apply(builder -> {
+                
+                builder.addAdvancedInfusionRecipe(
+                    new AspectList()
+                        .add(Aspect.PLANT, 64)
+                        .add(Aspect.DARKNESS, 32)
+                        .add(Aspect.DEATH, 16)
+                        .add(Aspect.EXCHANGE, 128),
+                    ItemSpec.specific("BiomesOPlenty:flowers").withDamage(2).getExample(),
+                    20,
+                    ItemSpec.specific("Botania:flower").withDamage(7),
+                    ItemSpec.specific(Items.skull).withDamage(1),
+                    ItemSpec.specific(Items.nether_wart),
+                    ItemSpec.specific(Items.skull).withDamage(1),
+                    ItemSpec.specific(Items.nether_wart)
+                );
+
+                builder.addAdvancedInfusionRecipe(
+                    new AspectList()
+                        .add(Aspect.PLANT, 64)
+                        .add(Aspect.POISON, 32)
+                        .add(Aspect.SENSES, 16)
+                        .add(Aspect.EXCHANGE, 128),
+                    ItemSpec.specific("BiomesOPlenty:flowers2").withDamage(1).getExample(),
+                    20,
+                    ItemSpec.specific("Botania:flower").withDamage(0),
+                    ItemSpec.specific(Items.spider_eye),
+                    ItemSpec.oreDict("cropCherry")
+                        .or(ItemSpec.specific("BiomesOPlenty:logs1").withDamage(1)),
+                    ItemSpec.specific(Items.spider_eye),
+                    ItemSpec.oreDict("cropCherry")
+                        .or(ItemSpec.specific("BiomesOPlenty:logs1").withDamage(1))
+                );
+
+                ItemSpec tallgrass = ItemSpec.specific(Blocks.tallgrass).withDamage(1);
+
+                builder.addAdvancedInfusionRecipe(
+                    new AspectList()
+                        .add(Aspect.PLANT, 64)
+                        .add(Aspect.AIR, 32)
+                        .add(Aspect.MOTION, 16)
+                        .add(Aspect.EXCHANGE, 128),
+                    ItemSpec.specific("BiomesOPlenty:flowers").withDamage(15).getExample(),
+                    20,
+                    ItemSpec.specific("Botania:flower").withDamage(8),
+                    ItemSpec.specific(Items.string),
+                    ItemSpec.oreDict("cropGrass").withExample(tallgrass).or(tallgrass),
+                    ItemSpec.specific(Items.string),
+                    ItemSpec.oreDict("cropGrass").withExample(tallgrass).or(tallgrass)
+                );
+
+                builder.addAdvancedInfusionRecipe(
+                    new AspectList()
+                        .add(Aspect.PLANT, 64)
+                        .add(Aspect.ELDRITCH, 32)
+                        .add(Aspect.MAGIC, 16)
+                        .add(Aspect.EXCHANGE, 128),
+                    ItemSpec.specific("BiomesOPlenty:flowers").withDamage(11).getExample(),
+                    20,
+                    ItemSpec.specific("Botania:flower").withDamage(10),
+                    ItemSpec.specific("HardcoreEnderExpansion:end_powder"),
+                    ItemSpec.specific(Blocks.end_stone),
+                    ItemSpec.specific("HardcoreEnderExpansion:end_powder"),
+                    ItemSpec.specific(Blocks.end_stone)
+                );
+
+                builder.addAdvancedInfusionRecipe(
+                    new AspectList()
+                        .add(Aspect.PLANT, 64)
+                        .add(Aspect.WATER, 32)
+                        .add(Aspect.FIRE, 16)
+                        .add(Aspect.WEATHER, 8)
+                        .add(Aspect.EXCHANGE, 128),
+                    ItemSpec.specific("BiomesOPlenty:flowers2").withDamage(0).getExample(),
+                    20,
+                    ItemSpec.specific("Botania:flower").withDamage(6),
+                    ItemSpec.specific(Blocks.vine),
+                    ItemSpec.oreDict("bottleWater"),
+                    ItemSpec.specific(Blocks.vine),
+                    ItemSpec.oreDict("bottleWater")
+                );
+
+                builder.addAdvancedInfusionRecipe(
+                    new AspectList()
+                        .add(Aspect.PLANT, 64)
+                        .add(Aspect.COLD, 32)
+                        .add(Aspect.CRYSTAL, 16)
+                        .add(Aspect.EXCHANGE, 64 * 2),
+                    ItemSpec.specific("BiomesOPlenty:flowers2").withDamage(7).getExample(),
+                    20,
+                    ItemSpec.specific("Botania:flower").withDamage(3),
+                    ItemSpec.specific(Blocks.packed_ice),
+                    ItemSpec.specific(Blocks.snow),
+                    ItemSpec.specific(Blocks.packed_ice),
+                    ItemSpec.specific(Blocks.snow)
+                );
+            })
+            .commit();
     }
 }

@@ -107,17 +107,28 @@ public class ResearchBuilder {
     }
 
     public ResearchBuilder addInfusionRecipe(AspectList aspects, ItemStack out, int instability, ItemStack centerItem, ItemStack... inputs) {
-        NonFuzzyInfusionRecipe patchedRecipe = new NonFuzzyInfusionRecipe(key,out, instability, aspects, centerItem, inputs);
+        InfusionRecipe recipe = new NonFuzzyInfusionRecipe(key,out, instability, aspects, centerItem, inputs);
+        this.addInfusionRecipe(recipe);
+        return this;
+    }
+
+    public ResearchBuilder addAdvancedInfusionRecipe(AspectList aspects, ItemStack out, int instability, ItemSpec centerItem, ItemSpec... inputs) {
+        InfusionRecipe recipe = new AdvancedInfusionRecipe(key,out, instability, aspects, centerItem, inputs);
+        this.addInfusionRecipe(recipe);
+        return this;
+    }
+
+    public ResearchBuilder addInfusionRecipe(InfusionRecipe recipe) {
         try {
             Field reflectionTarget = ThaumcraftApi.class.getDeclaredField("craftingRecipes");
             reflectionTarget.setAccessible(true);
             ArrayList<Object> craftingArray = (ArrayList<Object>) reflectionTarget.get(ThaumcraftApi.class);
-            craftingArray.add(patchedRecipe);
+            craftingArray.add(recipe);
         } catch (Exception e) {
             throw new RuntimeException("Cannot apply better infusion pattern", e);
         }
 
-        content.add(new ResearchPage(patchedRecipe));
+        content.add(new ResearchPage(recipe));
         return this;
     }
 
